@@ -1,38 +1,70 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+  font-family: 'Roboto', sans-serif;
+  font-size: 32px;
+}
+
+#calculator {
+  background-color: #000;
+  height: 430px;
+  width: 280px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+#equation {
+  background-color: #000;
+  color: #fff;
+  margin: 0px;
+  border: 0px;
+  text-align: right;
+}
+
+body {
+  justify-content: center;
+  align-items: center;
+}
+
+.calculator {
+  border: 2px;
+  border-radius: 10px;
+  background-color: #000;
+  height: 580px;
+  width: 360px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.logo {
+  padding-top: 25px;
+  padding-bottom: 25px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.keypadButton {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 25px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.operator {
+  display: grid;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.calcBtn {
+  margin: 5px;
+  background-color: lightgray;
+  color: #000;
+  border-radius: 25px;
+  height: 90px;
+  padding: 15px;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
 }

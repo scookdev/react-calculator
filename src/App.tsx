@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import React, {useState, MouseEvent} from 'react';
+import StandardKeypad from './components/StandardKeypad';
+import RomanKeypad from './components/RomanKeypad';
 
-function App() {
+const App = () => {
+  const [input, setInput] = useState(0);
+
+  const handleExpressionClick = (digit: number) => {
+    const expression = document.getElementById("expression") as HTMLInputElement;
+    input === 0 ? setInput(digit) : setInput(input + digit);
+    expression.value = input.toString();
+  }
+
+  const handleResetClick = () => {
+    setInput(0);
+    const expression = document.getElementById("expression") as HTMLInputElement;
+    expression.value = input.toString();
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="logo">
+        <img src='./give.png' alt="Give" />
+      </div>
+      <StandardKeypad
+        onExpressionClick={handleExpressionClick}
+        onResetClick={handleResetClick}
+      />
+      <RomanKeypad />
+    </>
   );
 }
 
