@@ -1,19 +1,19 @@
 import './App.css';
-import React, {useState, MouseEvent} from 'react';
+import {useState} from 'react';
 import StandardKeypad from './components/StandardKeypad';
 import RomanKeypad from './components/RomanKeypad';
 
 const App = () => {
-  const [input, setInput] = useState(0);
+  const [input, setInput] = useState('0');
 
-  const handleExpressionClick = (digit: number) => {
+  const handleExpressionClick = (digit: string) => {
     const expression = document.getElementById("expression") as HTMLInputElement;
-    input === 0 ? setInput(digit) : setInput(input + digit);
-    expression.value = input.toString();
+    setInput(input + digit);
+    expression.value = input;
   }
 
   const handleResetClick = () => {
-    setInput(0);
+    setInput('0');
     const expression = document.getElementById("expression") as HTMLInputElement;
     expression.value = input.toString();
   }
@@ -27,7 +27,6 @@ const App = () => {
         onExpressionClick={handleExpressionClick}
         onResetClick={handleResetClick}
       />
-      <RomanKeypad />
     </>
   );
 }
