@@ -41,13 +41,18 @@ const App = () => {
       }
 
       let equationNumbers: string[] = expression.value.split(operator);
-      let converted: number[];
+      const converted: Array<number> = [];
 
-      equationNumbers.forEach(item => {
-        alert(item);
-        converted.push(converter.romanToStandard(item));
-      });
-      expression.value = eval(`${converted[0]} ${operator} ${converted[1]}`);
+      try {
+        equationNumbers.forEach(item => {
+          let standardNumber = converter.romanToStandard(item);
+          converted.push(standardNumber);
+        });
+
+        expression.value = eval(`${converted[0]} ${operator} ${converted[1]}`);
+      } catch (e) {
+        expression.value = (e as Error).message;
+      }
     } else {
       expression.value = eval(expression.value.replace('÷', '/'));
     }
