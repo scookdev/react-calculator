@@ -5,13 +5,15 @@ import RomanKeypad from './components/RomanKeypad';
 import NumeralFormatConverter from './lib/converters';
 
 const App = () => {
-  const [input, setInput] = useState('0');
   const [keypad, setKeypad] = useState('standard');
+  const [status, setStatus] = useState('');
 
   const handleExpressionClick = (digit: string) => {
-    // setInput(input + digit);
     const expression = document.getElementById("expression") as HTMLInputElement;
-    // expression.value = input;
+    if (status === 'new') {
+      expression.value = '';
+      setStatus('');
+    }
     const memory = expression.value === '0' ? '' : expression.value;
     expression.value = memory + digit;
   }
@@ -19,11 +21,11 @@ const App = () => {
   const handleResetClick = () => {
     const expression = document.getElementById("expression") as HTMLInputElement;
 
-    keypad === 'standard' ? setInput('0') : setInput('');
-    expression.value = input.toString();
+    expression.value = keypad === 'standard' ? '0' : '';
   }
 
   const handleResultsClick = () => {
+    setStatus('new');
     const converter = new NumeralFormatConverter();
     const expression = document.getElementById("expression") as HTMLInputElement;
 
