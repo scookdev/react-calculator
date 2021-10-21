@@ -37,7 +37,7 @@ const App = () => {
       } else if (expression.value.includes('*')) {
         operator = '*';
       } else if (expression.value.includes('÷')) {
-        operator = '/';
+        operator = '÷';
       }
 
       let equationNumbers: string[] = expression.value.split(operator);
@@ -48,8 +48,8 @@ const App = () => {
           let standardNumber = converter.romanToStandard(item);
           converted.push(standardNumber);
         });
-
-        expression.value = eval(`${converted[0]} ${operator} ${converted[1]}`);
+        let result: number = eval(`${converted[0]} ${operator.replace('÷', '/')} ${converted[1]}`);
+        expression.value = converter.standardToRoman(result);
       } catch (e) {
         expression.value = (e as Error).message;
       }
