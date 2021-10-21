@@ -2,9 +2,11 @@ import './App.css';
 import {useState} from 'react';
 import StandardKeypad from './components/StandardKeypad';
 import RomanKeypad from './components/RomanKeypad';
+import NumeralFormatConverter from './lib/converters';
 
 const App = () => {
   const [input, setInput] = useState('0');
+  const [keypad, setKeypad] = useState('standard');
 
   const handleExpressionClick = (digit: string) => {
     // setInput(input + digit);
@@ -15,28 +17,65 @@ const App = () => {
   }
 
   const handleResetClick = () => {
-    setInput('0');
     const expression = document.getElementById("expression") as HTMLInputElement;
+
+    keypad === 'standard' ? setInput('0') : setInput('');
     expression.value = input.toString();
   }
 
   const handleResultsClick = () => {
+    const converter = new NumeralFormatConverter();
     const expression = document.getElementById("expression") as HTMLInputElement;
-    expression.value = eval(expression.value.replace('÷', '/'));
+
+    let operator: string = '';
+
+    if (keypad === 'roman') {
+      if (expression.value.includes('+')) {
+        operator = '+';
+      } else if (expression.value.includes('-')) {
+        operator = '-';
+      } else if (expression.value.includes('*')) {
+        operator = '*';
+      } else if (expression.value.includes('÷')) {
+        operator = '/';
+      }
+
+      let equationNumbers: string[] = expression.value.split(operator);
+      let converted: number[];
+
+      equationNumbers.forEach(item => {
+        alert(item);
+        converted.push(converter.romanToStandard(item));
+      });
+      expression.value = eval(`${converted[0]} ${operator} ${converted[1]}`);
+    } else {
+      expression.value = eval(expression.value.replace('÷', '/'));
+    }
   }
 
-  return (
-    <>
-      <div className="logo">
-        <img src='./give.png' alt="Give" />
-      </div>
+  const handleKeypadTypeClick = () => {
+    keypad === 'standard' ? setKeypad('roman') : setKeypad('standard');
+  }
+
+  if (keypad === 'standard') {
+    return (
       <StandardKeypad
         onExpressionClick={handleExpressionClick}
         onResetClick={handleResetClick}
         onResultsClick={handleResultsClick}
+        onKeypadTypeClick={handleKeypadTypeClick}
       />
-    </>
-  );
+    );
+  } else {
+    return (
+      <RomanKeypad
+        onExpressionClick={handleExpressionClick}
+        onResetClick={handleResetClick}
+        onResultsClick={handleResultsClick}
+        onKeypadTypeClick={handleKeypadTypeClick}
+      />
+    );
+  }
 }
 
 export default App;

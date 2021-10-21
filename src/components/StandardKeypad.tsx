@@ -2,14 +2,16 @@ import {FunctionComponent} from 'react';
 
 interface KeypadProps {
   onExpressionClick: (digit: string) => void
-  onResetClick: () => void,
+  onResetClick: () => void
   onResultsClick: () => void
+  onKeypadTypeClick: () => void
 }
 
 const StandardKeypad: FunctionComponent<KeypadProps> = ({
   onExpressionClick,
   onResetClick,
-  onResultsClick
+  onResultsClick,
+  onKeypadTypeClick
 }): JSX.Element => {
   return (
     <>
@@ -27,8 +29,8 @@ const StandardKeypad: FunctionComponent<KeypadProps> = ({
             }} />
           </form>
         </div>
-        <button className='modBtn' style={{gridColumn: '1/3', width: '166px'}} onClick={onResetClick}>AC</button>
-        <button className='romanBtn' style={{gridColumn: '3/5', width: '166px'}}>I V X</button>
+        <button className='modBtn' style={{gridColumn: '1/3', width: '166px'}} onClick={onResetClick}>Clear</button>
+        <button className='romanBtn' style={{gridColumn: '3/5', width: '166px'}} onClick={onKeypadTypeClick} >Roman</button>
 
         <button className='calcBtn' onClick={() => onExpressionClick('7')}>7</button>
         <button className='calcBtn' onClick={() => onExpressionClick('8')}>8</button>

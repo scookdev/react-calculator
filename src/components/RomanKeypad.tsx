@@ -1,56 +1,56 @@
-import React, {FunctionComponent} from 'react';
+import {FunctionComponent} from 'react';
 
 interface KeypadProps {
-  onExpressionClick: (digit: number) => void
+  onExpressionClick: (digit: string) => void
   onResetClick: () => void
+  onResultsClick: () => void
+  onKeypadTypeClick: () => void
 }
 
-const RomanKeyboard: FunctionComponent<KeypadProps> = ({
+const RomanKeypad: FunctionComponent<KeypadProps> = ({
   onExpressionClick,
-  onResetClick
+  onResetClick,
+  onResultsClick,
+  onKeypadTypeClick
 }): JSX.Element => {
   return (
     <>
-      <div className='calculator' >
-        <div style={{gridColumn: '1/5', gridRow: '1/1', padding: '12px'}}>
+      <div className='container calculator' >
+        <div style={{gridColumn: '1/5', gridRow: '1/1', paddingTop: '15px', paddingBottom: '15px', paddingRight: '17px'}}>
           <form>
-            <input defaultValue="0" id="expression" type="text" readOnly style={{
+            <input id="expression" type="text" readOnly style={{
               backgroundColor: '#000',
               color: '#fff',
               border: '0',
+              width: '95%',
               height: '35px',
-              textAlign: 'right'
+              textAlign: 'right',
+              fontSize: '50px'
             }} />
           </form>
         </div>
-        <button className='calcBtn' onClick={onResetClick}>AC</button>
-        <button className='calcBtn'>+/-</button>
-        <button className='calcBtn'>%</button>
-        <button className='calcBtn'>÷</button>
+        <button className='modBtn' style={{gridColumn: '1/3', width: '166px'}} onClick={onResetClick}>Clear</button>
+        <button className='romanBtn' style={{gridColumn: '3/5', width: '166px'}} onClick={onKeypadTypeClick} >Standard</button>
 
-        <button className='calcBtn' onClick={() => onExpressionClick(7)}>7</button>
-        <button className='calcBtn'>8</button>
-        <button className='calcBtn'>9</button>
-        <button className='calcBtn'>*</button>
+        <button className='calcBtn' onClick={() => onExpressionClick('C')}>C</button>
+        <button className='calcBtn' onClick={() => onExpressionClick('D')}>D</button>
+        <button className='calcBtn' onClick={() => onExpressionClick('M')}>M</button>
+        <button className='operatorBtn' onClick={() => onExpressionClick('÷')}>÷</button>
 
-        <button className='calcBtn'>4</button>
-        <button className='calcBtn'>5</button>
-        <button className='calcBtn'>6</button>
-        <button className='calcBtn'>-</button>
+        <button className='calcBtn' onClick={() => onExpressionClick('V')}>V</button>
+        <button className='calcBtn' onClick={() => onExpressionClick('X')}>X</button>
+        <button className='calcBtn' onClick={() => onExpressionClick('L')}>L</button>
+        <button className='operatorBtn' onClick={() => onExpressionClick('*')}>*</button>
 
-        <button className='calcBtn'>1</button>
-        <button className='calcBtn'>2</button>
-        <button className='calcBtn'>3</button>
-        <button className='calcBtn'>+</button>
+        <button className='calcBtn' style={{gridColumn: '3/4'}} onClick={() => onExpressionClick('I')}>I</button>
+        <button className='operatorBtn' style={{gridColumn: '4/5'}} onClick={() => onExpressionClick('-')}>-</button>
 
-        <button className='calcBtn'>0</button>
-        <button className='calcBtn'>.</button>
-        <button className='calcBtn'>=</button>
-        <button className='calcBtn'>123</button>
+        <button className='calcBtn' style={{gridColumn: '3/4'}} onClick={() => onResultsClick()}>=</button>
+        <button className='operatorBtn' style={{gridColumn: '4/5'}} onClick={() => onExpressionClick('+')}>+</button>
       </div>
     </>
   );
 }
 
 
-export default RomanKeyboard;
+export default RomanKeypad;
