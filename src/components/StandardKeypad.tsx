@@ -24,8 +24,7 @@ const StandardKeypad: FunctionComponent<KeypadProps> = ({
               border: '0',
               width: '95%',
               height: '35px',
-              textAlign: 'right',
-              fontSize: '50px'
+              textAlign: 'right'
             }} />
           </form>
         </div>

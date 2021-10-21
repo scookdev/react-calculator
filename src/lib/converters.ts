@@ -1,5 +1,8 @@
 class NumeralFormatConverter {
   romanToStandard = (romanNumeral: string): number => {
+    if (romanNumeral.includes('IIII')) {
+      throw new Error('Invalid Input');
+    }
     const conversions = {
       'I': 1,
       'V': 5,
@@ -24,7 +27,7 @@ class NumeralFormatConverter {
       nextStandard = conversions[nextRoman];
       if ((standard < nextStandard) && (nextRoman !== undefined)) {
         if (standard !== 1) {
-          throw new Error('Invalid Roman Numeral');
+          throw new Error('Invalid Input');
         }
         total -= standard;
       } else {
