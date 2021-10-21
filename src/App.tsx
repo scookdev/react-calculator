@@ -7,15 +7,22 @@ const App = () => {
   const [input, setInput] = useState('0');
 
   const handleExpressionClick = (digit: string) => {
+    // setInput(input + digit);
     const expression = document.getElementById("expression") as HTMLInputElement;
-    setInput(input + digit);
-    expression.value = input;
+    // expression.value = input;
+    const memory = expression.value === '0' ? '' : expression.value;
+    expression.value = memory + digit;
   }
 
   const handleResetClick = () => {
     setInput('0');
     const expression = document.getElementById("expression") as HTMLInputElement;
     expression.value = input.toString();
+  }
+
+  const handleResultsClick = () => {
+    const expression = document.getElementById("expression") as HTMLInputElement;
+    expression.value = eval(expression.value.replace('÷', '/'));
   }
 
   return (
@@ -26,6 +33,7 @@ const App = () => {
       <StandardKeypad
         onExpressionClick={handleExpressionClick}
         onResetClick={handleResetClick}
+        onResultsClick={handleResultsClick}
       />
     </>
   );
