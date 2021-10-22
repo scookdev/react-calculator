@@ -1,6 +1,7 @@
 class NumeralFormatConverter {
   romanToStandard = (romanNumeral: string): number => {
-    if (romanNumeral.includes('IIII')) {
+    const numeralSequence = /M{4,}|D{4,}|C{4,}|L{4,}|X{4,}|V{4,}|I{4,}/
+    if (romanNumeral.match(numeralSequence)) {
       throw new Error('Invalid Input');
     }
     const conversions = {

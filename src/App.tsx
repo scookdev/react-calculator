@@ -51,6 +51,9 @@ const App = () => {
           converted.push(standardNumber);
         });
         let result: number = eval(`${converted[0]} ${operator.replace('÷', '/')} ${converted[1]}`);
+        if (result > 3999) {
+          throw new Error('Invalid result');
+        }
         expression.value = converter.standardToRoman(result);
       } catch (e) {
         expression.value = (e as Error).message;
