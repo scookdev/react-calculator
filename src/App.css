@@ -9,14 +9,6 @@
   padding: 25px;
 }
 
-#equation {
-  background-color: #000;
-  color: #fff;
-  margin: 0px;
-  border: 0px;
-  text-align: right;
-}
-
 body {
   justify-content: center;
   align-items: center;
@@ -39,16 +31,6 @@ body {
   padding-top: 25px;
   padding-bottom: 25px;
   text-align: center;
-}
-
-.keypadButton {
-  padding: 10px;
-  margin: 5px;
-  border-radius: 25px;
-}
-
-.operator {
-  display: grid;
 }
 
 .calcBtn {
@@ -99,15 +81,6 @@ body {
   vertical-align: middle;
 }
 
-.expressionio {
-  font-size: 45px;
-  background-color: '#000';
-  color: '#fff';
-  border: '0';
-  height: '35px';
-  text-align: 'right';
-}
-
 .romanBtn {
   border: 0px;
   background: none;
@@ -122,8 +95,4 @@ body {
   text-align: center;
   display: inline-block;
   vertical-align: middle;
-}
-
-.double {
-  grid-column: 1 / -1;
 }
